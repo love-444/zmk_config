@@ -47,7 +47,7 @@
 // | SHFT |     |HOME |PGDN | END |     |   |  _  |  +  |  |  |  {  |  }  |  "   |
 //                    | GUI |     | SPC |   | SPC |     | GUI |
                         bindings = <
-   &kp F1    &kp F2   &kp F3 &kp F4   &kp F5   &kp F6   &kp 6 &kp 7  &kp 8 &kp 9 &kp 0 &kp DEL
+   &kp F1    &kp F2   &kp F3 &kp F4   &kp F5   &kp F6   &kp N6 &kp N7  &kp N8 &kp N9 &kp N0 &kp DEL
    &kp TAB   &trans   &kp PG_UP &trans &trans   &trans      &kp MINUS &kp EQUAL &kp BSLH &kp LBKT        &kp RBKT &kp SQT
    &kp LSHFT &kp HOME   &kp PG_DN &kp END   &trans   &trans      &kp UNDER &kp PLUS &kp PIPE  &kp LBRC        &kp RBRC &kp DQT
                                     &kp LGUI     &trans       &kp SPACE      &kp SPACE  &trans   &kp RGUI
