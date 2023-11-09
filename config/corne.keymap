@@ -13,7 +13,7 @@
     compatible = "zmk,combos";
     combo_esc {
         timeout-ms = <50>;
-        key-positions = <12 24>;
+        key-positions = <11 23>;
         bindings = <&kp DEL>;
     };
   };
