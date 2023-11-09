@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\config",
+    "\\config\\boards"
   ],
-  "SelectedNode": "\\C:\\Users\\love-444\\Source\\Repos\\zmk_config",
+  "SelectedNode": "\\config\\corne.conf",
   "PreviewInSolutionExplorer": false
 }
