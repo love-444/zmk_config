@@ -40,17 +40,17 @@
                 };
                 combo_num {
                         timeout-ms = <50>;
-                        key_positions = <38 39>;
+                        key-positions = <38 39>;
                         bindings = <&mo 1>;
                 };
                 combo_sym {
                         timeout-ms = <50>;
-                        key_positions = <37 40>;
+                        key-positions = <37 40>;
                         bindings = <&mo 2>;
                 };
                 combo_fun {
                         timeout-ms = <50>;
-                        key_positions = <36 40>;
+                        key-positions = <36 40>;
                         bindings = <&mo 3>;
                 };
         };
