@@ -16,6 +16,16 @@
 };
 
 / {
+        behaviors {
+                bhm: balanced_homerow_mods {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping-term-ms = <200>;    // <---[[moderate duration]]      
+                quick-tap-ms = <0>;
+                flavor = "balanced";
+                bindings = <&kp>, <&kp>;
+                };
+        };
         combos {
                 compatible = "zmk,combos";
                 combo_del {
@@ -58,7 +68,7 @@
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T                   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp LCTRL &kp A &kp S &kp D &kp F &kp G                   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LSHFT &kp Z &kp X &kp C &kp V &kp B                   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-&ht_hp LALT ESC &ht_hp LSHIFT TAB &ht_hp LCTRL SPACE  &ht_hp LCTRL RET &ht_hp RSHIFT BSPC &ht_hp LALT RA(GRAVE)
+   &bhm LALT ESC &bhm LSHIFT TAB &bhm LCTRL SPACE            &bhm LCTRL RET &bhm RSHIFT BSPC &bhm LALT RA(GRAVE)
                         >;
                 };
                 lower_layer {
@@ -82,9 +92,9 @@
 // | SHFT |     |     |     |     | VOD |   |  _  |  +  |  {  |  }  | "|" |  ~   |
 //                    | GUI |     | SPC |   | ENT |     | GUI |
                         bindings = <
-   &trans &kp EXCL &kp AT   &kp HASH &kp DLLR &kp PRCNT       &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
-   &trans &kp DQT &kp LBKT &kp LBRC &kp LPAR &kp SQT         &kp SQT &kp RPAR &kp RBRC &kp RBKT &kp DQT &trans
-   &trans &kp GRAVE &kp TILDE &kp UNDER &kp MINUS &none       &none &kp EQUAL &kp PLUS &kp PIPE &kp BSLH &trans
+   &trans &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT       &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
+   &trans &kp DQT   &kp LBKT  &kp LBRC  &kp LPAR  &kp SQT         &kp SQT   &kp RPAR  &kp RBRC        &kp RBKT &kp DQT  &trans
+   &trans &kp GRAVE &kp TILDE &kp UNDER &kp MINUS &none           &none     &kp EQUAL &kp PLUS        &kp PIPE &kp BSLH &trans
                                 &kp LGUI &trans   &trans      &trans    &trans    &kp RGUI
                         >;
                 };
