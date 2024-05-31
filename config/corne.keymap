@@ -30,7 +30,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 #binding-cells = <0>;
                 tapping-term-ms = <200>;
-                bindings = <&hm LCTRL BSPC> <&kp BSPC>;
+                bindings = <&hm LCTRL BSPC>, <&kp BSPC>;
         };
         kanji: kanji_morph {
             compatible = "zmk,behavior-mod-morph";
