@@ -35,7 +35,7 @@
         kanji: kanji_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp Z>, <&kp GRAVE>;
+            bindings = <&kp Z>, <&kp TILDE>;
             mods = <(MOD_RALT)>;
         };
     };
