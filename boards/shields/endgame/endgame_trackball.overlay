@@ -65,7 +65,7 @@
         zephyr,display = &oled;
 		zmk,kscan = &kscan0;
 	};
-	kscan0: kscan_0 {
+	kscan1: kscan_1 {
 		compatible = "zmk,kscan-gpio-direct";
 		toggle-mode;
 
