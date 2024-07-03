@@ -63,9 +63,27 @@
 / {
 	chosen {
         zephyr,display = &oled;
-		zmk,kscan = &kscan0,kscan1;
+		zmk,kscan = &kscan_comp;
 	};
-	kscan1: kscan_1 {
+
+    kscan_comp: kscan_composite {
+        compatible = "zmk,kscan-composite";
+        columns = <12>;
+        rows = <5>;
+
+        // Include the matrix driver
+        matrix {
+            kscan = <&kscan0>;
+        };
+
+        // Include the direct GPIO driver...
+        direct {
+            kscan = <&kscan1>;
+            row-offset = <4>; // ...and shift it to not overlap
+        };
+    };	
+    
+    kscan1: kscan_1 {
 		compatible = "zmk,kscan-gpio-direct";
 		toggle-mode;
 
