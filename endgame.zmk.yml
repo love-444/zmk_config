@@ -1,0 +1,15 @@
+file_format: "1"
+id: endgame
+name: Endgame
+type: shield
+url: https://github.com/foostan/crkbd/
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - trackball
+  - display
+siblings:
+  - endgame_left
+  - endgame_right
+  - endgame_trackball
