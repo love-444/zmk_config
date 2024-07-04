@@ -64,16 +64,6 @@
     chosen {
         zephyr,display = &oled;
     };
-
-	sensors: sensors {
-		compatible = "zmk,keymap-sensors";
-		sensors = <&encoder>;
-		triggers-per-rotation = <20>;
-    };
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-	};
 };
 
 &kscan0 {
