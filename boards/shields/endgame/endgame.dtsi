@@ -89,10 +89,5 @@ RC(4,0) RC(4,1) RC(4,2)
 		triggers-per-rotation = <20>;
     };
 
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-	};
-
     // TODO: per-key RGB node(s)?
 };

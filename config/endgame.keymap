@@ -32,7 +32,7 @@
 };
 
 / {
-
+/*
     /* input config for mouse move mode on default layer (DEF & MSK) */
     tb0_mmv_ibl {
         /* new forked compatible name */
@@ -80,6 +80,7 @@
         /* NOTE 2: Floating point computation requires alot of ram. */
         /*         This feature will cuase stackove flow with CONFIG_ZMK_USB_LOGGING=y */
     };
+*/
 
     behaviors {
         hm: homerow_mods {
