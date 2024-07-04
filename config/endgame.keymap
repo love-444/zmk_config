@@ -157,7 +157,7 @@
                 &kp LCTRL &kp A  &kp S &kp D        &kp F         &kp G                     &kp H          &kp J          &kp K     &kp L   &kp SEMI &kp SQT
                 &kp LSHFT &kanji &kp X &kp C        &kp V         &kp B                     &kp N          &kp M          &kp COMMA &kp DOT &kp FSLH &kp ESC
                                        &hm LALT ESC &hm LCTRL TAB &hm LSHIFT SPACE          &hm RSHIFT RET &hm LCTRL BSPC &kp RALT
-                &mkp RCLK &mkp LCLK &to 1
+                &mkp RCLK &mkp LCLK &to MSC
                 >;
             sensor-bindings = <&inc_dec_kp PGDN PGUP>;
         };
@@ -237,7 +237,7 @@
                 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
                                      &trans &trans &trans   &trans &trans &trans
-                &tog 0 &tog MSC &mkp MCLK
+                &tog MSC &tog MSC &mkp MCLK
                 >;
             sensor-bindings	= <&rot_bt>;
         };
