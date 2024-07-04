@@ -26,4 +26,5 @@
 &kscan1 {
 	input-gpios
 		= <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        ;
 };
