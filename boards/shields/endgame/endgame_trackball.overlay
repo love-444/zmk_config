@@ -79,7 +79,16 @@
 	};
 };
 
-&kscan1: kscan_1 {
+&kscan0 {
+    col-gpios
+        = <&pro_micro 8 GPIO_ACTIVE_HIGH>
+        ;
+    row-gpios
+        = <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        ;
+};
+
+&kscan1 {
 	input-gpios
 		= <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
 		, <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
