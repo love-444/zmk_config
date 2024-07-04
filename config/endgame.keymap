@@ -10,12 +10,77 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/led/led.h>
+#include <dt-bindings/zmk/mouse.h>
+
+#define BAS 0 // mouse key layer
+#define NUM 1 // mouse key layer
+#define SYM 2 // mouse key layer
+#define FUN 3 // mouse key layer
+#define GAM 4 // mouse key layer
+#define MSC 5 // mouse scoll layer
+
+#define INPUT_EV_REL 0x02
+#define INPUT_REL_X 0x00
+#define INPUT_REL_Y 0x01
+
+&encoder {
+	status = "okay";
+};
 
 &mt {
         tapping-term-ms = <200>;
 };
 
 / {
+
+    /* input config for mouse move mode on default layer (DEF & MSK) */
+    tb0_mmv_ibl {
+        /* new forked compatible name */
+        compatible = "zmk,input-behavior-listener";
+                
+        /* the input point device alias */
+        device = <&trackball>;
+
+        /* only enable in default layer (DEF) & mouse key layer (MSK) */
+        layers = <BAS NUM SYM FUN GAM>;
+
+        /* event code value to override raw input event */
+        /* designed for switching to mouse scroll, xy-swap, precise-mode+, etc */
+        /* NOTE: only apply input-code overriding for INPUT_EV_REL */
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        scale-multiplier = <1>;
+        scale-divisor = <1>;
+
+        /* align to CCW 45 degree */
+        rotate-deg = <285>;
+        /* NOTE 1: This settings do not compitable with y-invert and x-invert */
+        /* NOTE 2: Floating point computation requires alot of ram. */
+        /*         This feature will cuase stackove flow with CONFIG_ZMK_USB_LOGGING=y */
+    };
+  
+    /* input config for mouse scroll mode on momentary mouse scoll layer (MSC) */
+    tb0_msl_ibl {
+        compatible = "zmk,input-behavior-listener";
+        device = <&trackball>;
+        layers = <MSC>;
+        evt-type = <INPUT_EV_REL>;
+                
+        /* slienting x-axis with alt event code */
+        x-input-code = <INPUT_REL_HWHEEL>;
+        y-input-code = <INPUT_REL_MISC>;
+
+        /* invent scrolling direction */
+        y-invert;
+
+        /* align to CCW 45 degree */
+        rotate-deg = <285>;
+        /* NOTE 1: This settings do not compitable with y-invert and x-invert */
+        /* NOTE 2: Floating point computation requires alot of ram. */
+        /*         This feature will cuase stackove flow with CONFIG_ZMK_USB_LOGGING=y */
+    };
+
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -38,110 +103,143 @@
             bindings = <&kp Z>, <&kp RALT(GRAVE)>;
             mods = <(MOD_RALT)>;
         };
+        rot_bt: bt_behavior {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&bt BT_CLR>, <&bt BT_NXT>;
+        };
     };
-        combos {
-                compatible = "zmk,combos";
-                combo_del {
-                        timeout-ms = <50>;
-                        key-positions = <1 13>;
-                        bindings = <&kp LGUI>;
-                        layers = <0>;
-                };
-                combo_gui {
-                        timeout-ms = <50>;
-                        key-positions = <10 22>;
-                        bindings = <&kp DEL>;
-                        layers = <0>;
-                };
-                combo_num {
-                        timeout-ms = <150>;
-                        key-positions = <38 39>;
-                        bindings = <&mo 1>;
-                        layers = <0>;
-                };
-                combo_sym {
-                        timeout-ms = <150>;
-                        key-positions = <37 40>;
-                        bindings = <&mo 2>;
-                        layers = <0>;
-                };
-                combo_fun {
-                        timeout-ms = <150>;
-                        key-positions = <36 41>;
-                        bindings = <&mo 3>;
-                        layers = <0>;
-                };
+    combos {
+        compatible = "zmk,combos";
+        combo_del {
+            timeout-ms = <50>;
+            key-positions = <1 13>;
+            bindings = <&kp LGUI>;
+            layers = <0>;
+        };
+        combo_gui {
+            timeout-ms = <50>;
+            key-positions = <10 22>;
+            bindings = <&kp DEL>;
+            layers = <0>;
+        };
+        combo_num {
+            timeout-ms = <150>;
+            key-positions = <38 39>;
+            bindings = <&mo 1>;
+            layers = <0>;
+        };
+        combo_sym {
+            timeout-ms = <150>;
+            key-positions = <37 40>;
+            bindings = <&mo 2>;
+            layers = <0>;
+        };
+        combo_fun {
+            timeout-ms = <150>;
+            key-positions = <36 41>;
+            bindings = <&mo 3>;
+            layers = <0>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+            //                    | ALT | LWR | SPC |   | ENT | RSE  | ALT |
+            bindings = <
+                &kp TAB   &kp Q  &kp W &kp E        &kp R         &kp T                     &kp Y          &kp U          &kp I     &kp O   &kp P    &kp BSPC
+                &kp LCTRL &kp A  &kp S &kp D        &kp F         &kp G                     &kp H          &kp J          &kp K     &kp L   &kp SEMI &kp SQT
+                &kp LSHFT &kanji &kp X &kp C        &kp V         &kp B                     &kp N          &kp M          &kp COMMA &kp DOT &kp FSLH &kp ESC
+                                       &hm LALT ESC &hm LCTRL TAB &hm LSHIFT SPACE          &hm RSHIFT RET &hm LCTRL BSPC &kp RALT
+                &mkp RCLK &mkp LCLK &to MSC
+                >;
+            sensor-bindings = <&inc_dec_kp PGDN PGUP>;
         };
 
-        keymap {
-                 compatible = "zmk,keymap";
+        lower_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+            // | CTRL |PSCRN| HOM | PUP | PUD | END |   | LFT | DWN |  UP | RGT |  `  |      |
+            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+            //                    | GUI |     | SPC |   | ENT |     | GUI |
+            bindings = <
+                &trans  &kp N1    &kp N2   &kp N3    &kp N4    &kp N5      &kp N6   &kp N7   &kp N8 &kp N9    &kp N0    &trans
+                &trans  &kp PSCRN &kp HOME &kp PG_UP &kp PG_DN &kp END     &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp RCTRL &trans
+                &trans  &trans    &trans   &trans    &trans    &trans      &trans   &trans   &trans &trans    &trans   &trans
+                                           &trans    &trans    &trans      &trans   &trans   &trans
+                &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp PGDN PGUP>;
+        };
 
-                default_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | ALT | LWR | SPC |   | ENT | RSE  | ALT |
-                        bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T                   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G                   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kanji &kp X &kp C &kp V &kp B                   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-   &hm LALT ESC &hm LCTRL TAB &hm LSHIFT SPACE           &hm RSHIFT RET &hm LCTRL BSPC &kp RALT
-                        >;
-                };
-                lower_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | CTRL |PSCRN| HOM | PUP | PUD | END |   | LFT | DWN |  UP | RGT |  `  |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | GUI |
-                        bindings = <
-   &trans  &kp N1    &kp N2   &kp N3    &kp N4    &kp N5      &kp N6   &kp N7   &kp N8 &kp N9    &kp N0    &trans
-   &trans  &kp PSCRN &kp HOME &kp PG_UP &kp PG_DN &kp END     &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp RCTRL &trans
-   &trans  &trans    &trans   &trans    &trans    &trans      &trans   &trans   &trans &trans    &trans   &trans
-                              &trans    &trans    &trans      &trans   &trans   &trans
-                        >;
-                };
+        raise_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
+            // | CTRL | PRV | MUT | PLY | NXT | VOU |   |  -  |  =  |  [  |  ]  |  \  |  `   |
+            // | SHFT |     |     |     |     | VOD |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+            //                    | GUI |     | SPC |   | ENT |     | GUI |
+            bindings = <
+                &trans &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT       &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
+                &trans &kp DQT   &kp LBKT  &kp LBRC  &kp LPAR  &kp SQT         &kp SQT   &kp RPAR  &kp RBRC        &kp RBKT &kp DQT  &trans
+                &trans &kp GRAVE &kp TILDE &kp UNDER &kp MINUS &none           &none     &kp EQUAL &kp PLUS        &kp PIPE &kp BSLH &trans
+                                           &kp LGUI  &trans    &trans          &trans    &trans    &kp RGUI
+                &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp PGDN PGUP>;
+        };
 
-                raise_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL | PRV | MUT | PLY | NXT | VOU |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     | VOD |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | GUI |
-                        bindings = <
-   &trans &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT       &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
-   &trans &kp DQT   &kp LBKT  &kp LBRC  &kp LPAR  &kp SQT         &kp SQT   &kp RPAR  &kp RBRC        &kp RBKT &kp DQT  &trans
-   &trans &kp GRAVE &kp TILDE &kp UNDER &kp MINUS &none           &none     &kp EQUAL &kp PLUS        &kp PIPE &kp BSLH &trans
-                                &kp LGUI &trans   &trans          &trans    &trans    &kp RGUI
-                        >;
-                };
-
-                super_layer {
-// -----------------------------------------------------------------------------------------
-// |  F1  |  F2 |  F3 |  F4 |  F5 |  F6 |   |  F7 |  F8 |  F9 | F10 | F11 | F12 |
-// |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     | RON | HUI | SAI | BRI |     |
-// |      | USB | BLE |     |     | CLR |   |     | ROF | HUD | SAD | BRD |     |
-//                    |     |     |     |   |     |     |    |
-                        bindings = <
-   &trans   &kp F2       &kp F3       &kp F4       &kp F5       &kp F6              &kp F7       &kp F8       &kp F9       &kp F10      &kp F11    &trans
-   &trans   &kp F1       &kp C_PREV   &kp C_MUTE   &kp C_PP     &kp C_NEXT          &kp C_BRI_DN &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_UP &kp F12    &trans
-   &trans   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4        &to 1        &none        &to 4        &out OUT_TOG &bt BT_CLR &trans
+        super_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  F1  |  F2 |  F3 |  F4 |  F5 |  F6 |   |  F7 |  F8 |  F9 | F10 | F11 | F12 |
+            // |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     | RON | HUI | SAI | BRI |     |
+            // |      | USB | BLE |     |     | CLR |   |     | ROF | HUD | SAD | BRD |     |
+            //                    |     |     |     |   |     |     |    |
+            bindings = <
+                &trans   &kp F2       &kp F3       &kp F4       &kp F5       &kp F6              &kp F7       &kp F8       &kp F9       &kp F10      &kp F11    &trans
+                &trans   &kp F1       &kp C_PREV   &kp C_MUTE   &kp C_PP     &kp C_NEXT          &kp C_BRI_DN &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_UP &kp F12    &trans
+                &trans   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4        &to 1        &none        &to 4        &out OUT_TOG &bt BT_CLR &trans
                                       &trans       &trans       &trans              &trans       &trans       &trans
-                        >;
-                };
-                game_layer {
-// -----------------------------------------------------------------------------------------
-// |  F1  |  F2 |  F3 |  F4 |  F5 |  F6 |   |  F7 |  F8 |  F9 | F10 | F11 | F12 |
-// |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     | RON | HUI | SAI | BRI |     |
-// |      | USB | BLE |     |     | CLR |   |     | ROF | HUD | SAD | BRD |     |
-//                    |     |     |     |   |     |     |    |
-                        bindings = <
-   &trans &kp Q &kp W &kp E   &kp R   &kp T        &none     &kp I    &kp UP   &none     &none &trans
-   &trans &kp A &kp S &kp D   &kp F   &kp G        &none     &kp LEFT &kp DOWN &kp RIGHT &none &trans
-   &trans &kp Z &kp X &kp C   &kp V   &kp B        &none     &to 0    &none    &none     &none &trans
-                      &kp ESC &kp TAB &kp SPACE    &kp ENTER &trans   &trans
-                        >;
-                };
+                &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp PGDN PGUP>;
         };
+
+        game_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  F1  |  F2 |  F3 |  F4 |  F5 |  F6 |   |  F7 |  F8 |  F9 | F10 | F11 | F12 |
+            // |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     | RON | HUI | SAI | BRI |     |
+            // |      | USB | BLE |     |     | CLR |   |     | ROF | HUD | SAD | BRD |     |
+            //                    |     |     |     |   |     |     |    |
+            bindings = <
+                &trans &kp Q &kp W &kp E   &kp R   &kp T        &none     &kp I    &kp UP   &none     &none &trans
+                &trans &kp A &kp S &kp D   &kp F   &kp G        &none     &kp LEFT &kp DOWN &kp RIGHT &none &trans
+                &trans &kp Z &kp X &kp C   &kp V   &kp B        &none     &to 0    &none    &none     &none &trans
+                                   &kp ESC &kp TAB &kp SPACE    &kp ENTER &trans   &trans
+                &trans &trans &trans
+                >;
+            sensor-bindings = <&inc_dec_kp PGDN PGUP>;
+        };
+
+        scroll_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  F1  |  F2 |  F3 |  F4 |  F5 |  F6 |   |  F7 |  F8 |  F9 | F10 | F11 | F12 |
+            // |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     | RON | HUI | SAI | BRI |     |
+            // |      | USB | BLE |     |     | CLR |   |     | ROF | HUD | SAD | BRD |     |
+            //                    |     |     |     |   |     |     |    |
+            bindings = <
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                                     &trans &trans &trans   &trans &trans &trans
+                &tog MSC &tog MSC &mkp MCLK
+                >;
+            sensor-bindings	= <&rot_bt>;
+        };
+    };
 };
