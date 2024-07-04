@@ -63,10 +63,10 @@
 / {
 	chosen {
         zephyr,display = &oled;
-		zmk,kscan = &kscan_comp;
+		zmk,kscan = &kscan1;
 	};
 
-    kscan_comp: kscan_composite {
+    kscan_comp2: kscan_composite_2 {
         compatible = "zmk,kscan-composite";
         columns = <12>;
         rows = <5>;
