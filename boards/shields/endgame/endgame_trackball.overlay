@@ -61,38 +61,6 @@
 };
 
 / {
-	chosen {
-        zephyr,display = &oled;
-		zmk,kscan = &kscan1;
-	};
-
-    kscan_comp2: kscan_composite_2 {
-        compatible = "zmk,kscan-composite";
-        columns = <12>;
-        rows = <5>;
-
-        // Include the matrix driver
-        matrix {
-            kscan = <&kscan0>;
-        };
-
-        // Include the direct GPIO driver...
-        direct {
-            kscan = <&kscan1>;
-            row-offset = <4>; // ...and shift it to not overlap
-        };
-    };	
-    
-    kscan1: kscan_1 {
-		compatible = "zmk,kscan-gpio-direct";
-		toggle-mode;
-
-		input-gpios
-		= <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-		, <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-		, <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-		;
-	};
 	encoder: encoder {
 		compatible = "alps,ec11";
 		a-gpios = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
@@ -111,21 +79,10 @@
 	};
 };
 
-&default_transform {
-    col-offset = <12>;
-    row-offset = <4>;
-};
-
-&five_column_transform {
-    col-offset = <12>;
-    row-offset = <4>;
-};
-
-&kscan0 {
-    col-gpios
-        = <&pro_micro 4 GPIO_ACTIVE_HIGH>
-        ;
-    row-gpios
-        = <&pro_micro 5 GPIO_ACTIVE_HIGH>
+&kscan1: kscan_1 {
+	input-gpios
+		= <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
         ;
 };
