@@ -112,9 +112,11 @@
 };
 
 &kscan0 {
+    col-offset = <12>; // ...and shift it to not overlap
     col-gpios
         = <&pro_micro 4 GPIO_ACTIVE_HIGH>
         ;
+    row-offset = <4>; // ...and shift it to not overlap
     row-gpios
         = <&pro_micro 5 GPIO_ACTIVE_HIGH>
         ;
