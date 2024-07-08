@@ -53,7 +53,7 @@
         kanji: kanji_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp Z>, <&kp RALT(GRAVE)>;
+            bindings = <&kp Z>, <&kp GRAVE>;
             mods = <(MOD_RALT)>;
         };
         rot_bt: bt_behavior {
