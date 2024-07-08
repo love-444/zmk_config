@@ -55,6 +55,7 @@
             #binding-cells = <0>;
             bindings = <&kp Z>, <&kp GRAVE>;
             mods = <(MOD_RALT)>;
+	    keep-mods = <(MOD_RALT)>;
         };
         rot_bt: bt_behavior {
             compatible = "zmk,behavior-sensor-rotate";
@@ -109,7 +110,7 @@
                 &kp TAB   &kp Q  &kp W &kp E        &kp R         &kp T                     &kp Y          &kp U          &kp I     &kp O   &kp P    &kp BSPC
                 &kp LCTRL &kp A  &kp S &kp D        &kp F         &kp G                     &kp H          &kp J          &kp K     &kp L   &kp SEMI &kp SQT
                 &kp LSHFT &kanji &kp X &kp C        &kp V         &kp B                     &kp N          &kp M          &kp COMMA &kp DOT &kp FSLH &kp ESC
-                                       &hm LALT ESC &hm LCTRL TAB &hm LSHIFT SPACE          &hm RSHIFT RET &hm LCTRL BSPC &kanji
+                                       &hm LALT ESC &hm LCTRL TAB &hm LSHIFT SPACE          &hm RSHIFT RET &hm LCTRL BSPC &kp RALT
                 &mkp RCLK &mkp LCLK &to MSC
                 >;
             sensor-bindings = <&inc_dec_kp PGDN PGUP>;
