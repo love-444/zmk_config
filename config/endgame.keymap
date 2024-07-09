@@ -33,6 +33,54 @@
 
 / {
 
+    /* input config for mouse move mode on default layer (DEF & MSK) */
+    tb0_mmv_ibl {
+        /* new forked compatible name */
+        compatible = "zmk,input-behavior-listener";
+
+        /* the input point device alias */
+        device = <&trackball>;
+
+        /* only enable in default layer (DEF) & mouse key layer (MSK) */
+        layers = <BAS NUM SYM FUN GAM>;
+
+        /* event code value to override raw input event */
+        /* designed for switching to mouse scroll, xy-swap, precise-mode+, etc */
+        /* NOTE: only apply input-code overriding for INPUT_EV_REL */
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        scale-multiplier = <1>;
+        scale-divisor = <1>;
+
+        /* align to CCW 45 degree */
+        rotate-deg = <285>;
+        /* NOTE 1: This settings do not compitable with y-invert and x-invert */
+        /* NOTE 2: Floating point computation requires alot of ram. */
+        /*         This feature will cuase stackove flow with CONFIG_ZMK_USB_LOGGING=y */
+    };
+
+    /* input config for mouse scroll mode on momentary mouse scoll layer (MSC) */
+    tb0_msl_ibl {
+        compatible = "zmk,input-behavior-listener";
+        device = <&trackball>;
+        layers = <MSC>;
+        evt-type = <INPUT_EV_REL>;
+
+        /* slienting x-axis with alt event code */
+        x-input-code = <INPUT_REL_HWHEEL>;
+        y-input-code = <INPUT_REL_MISC>;
+
+        /* invent scrolling direction */
+        y-invert;
+
+        /* align to CCW 45 degree */
+        rotate-deg = <285>;
+        /* NOTE 1: This settings do not compitable with y-invert and x-invert */
+        /* NOTE 2: Floating point computation requires alot of ram. */
+        /*         This feature will cuase stackove flow with CONFIG_ZMK_USB_LOGGING=y */
+    };
+
 
     behaviors {
         hm: homerow_mods {
