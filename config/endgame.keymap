@@ -108,7 +108,7 @@
         rot_bt: bt_behavior {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&bt BT_CLR>, <&bt BT_NXT>;
+            bindings = <&bt BT_PRV>, <&bt BT_NXT>;
         };
     };
     combos {
@@ -239,7 +239,7 @@
                 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
                                      &trans &trans &trans   &trans &trans &trans
-                &tog MSC &tog MSC &mkp MCLK
+	&bt BT_CLR &tog MSC &mkp MCLK
                 >;
             sensor-bindings	= <&rot_bt>;
         };
