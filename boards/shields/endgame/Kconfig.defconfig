@@ -39,7 +39,7 @@ endchoice
 
 endif 
 
-if SHIELD_ENDGAME_TRACKBAL
+if SHIELD_ENDGAME_TRACKBALL
 
 config ZMK_KEYBOARD_NAME
 	default "Endgame"
