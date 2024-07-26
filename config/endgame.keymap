@@ -66,13 +66,15 @@
         device = <&trackball>;
         layers = <MSC>;
         evt-type = <INPUT_EV_REL>;
+        scale-multiplier = <2>;
+        scale-divisor = <7>;
 
         /* slienting x-axis with alt event code */
         x-input-code = <INPUT_REL_HWHEEL>;
         y-input-code = <INPUT_REL_WHEEL>;
 
         /* align to CCW 45 degree */
-        rotate-deg = <285>;
+        rotate-deg = <105>;
         /* NOTE 1: This settings do not compitable with y-invert and x-invert */
         /* NOTE 2: Floating point computation requires alot of ram. */
         /*         This feature will cuase stackove flow with CONFIG_ZMK_USB_LOGGING=y */
