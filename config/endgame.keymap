@@ -68,7 +68,7 @@
         evt-type = <INPUT_EV_REL>;
 
         /* slienting x-axis with alt event code */
-        x-input-code = <INPUT_REL_HWHEEL>;
+        x-input-code = <INPUT_REL_MISC>;
         y-input-code = <INPUT_REL_WHEEL>;
 
         /* align to CCW 45 degree */
