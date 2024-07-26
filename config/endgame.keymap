@@ -71,12 +71,12 @@
         y-input-code = <INPUT_REL_WHEEL>;
 
         /* align to CCW 45 degree */
-        rotate-deg = <105>;
+        rotate-deg = <285>;
         /* NOTE 1: This settings do not compitable with y-invert and x-invert */
         /* NOTE 2: Floating point computation requires alot of ram. */
         /*         This feature will cuase stackove flow with CONFIG_ZMK_USB_LOGGING=y */
 
-        bindings = <&ib_wheel_scaler 1 8>;
+        bindings = <&ib_wheel_scaler 1 18>;
     };
 
     /* define a resolution down scaler only for INPUT_REL_WHEEL */
