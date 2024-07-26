@@ -55,7 +55,6 @@
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
-		wakeup-source;
         columns = <12>;
         rows = <5>;
 // | SW1  | SW2  | SW3  | SW4  | SW5  | SW6  |   | SW6  | SW5  | SW4  | SW3  | SW2  | SW1  |
@@ -97,9 +96,10 @@ RC(4,0) RC(4,1) RC(4,2)
     };
 
     kscan1: kscan_1 {
-		compatible = "zmk,kscan-gpio-direct";
-		toggle-mode;
-	};
+	compatible = "zmk,kscan-gpio-direct";
+	wakeup-source;
+	toggle-mode;
+    };
 
     kscan_comp2: kscan_composite_2 {
         compatible = "zmk,kscan-composite";
