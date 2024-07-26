@@ -70,7 +70,7 @@
         /* slienting x-axis with alt event code */
         x-input-code = <INPUT_REL_MISC>;
         y-input-code = <INPUT_REL_WHEEL>;
-	scale_divisor = <2>;
+	scale-divisor = <2>;
 
         /* align to CCW 45 degree */
         rotate-deg = <285>;
