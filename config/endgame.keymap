@@ -92,16 +92,16 @@
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <100>;
-            quick-tap-ms = <100>;
-            require-prior-idle-ms = <66>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <100>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
         td_mt: tap_dance_mod_tap {
                 compatible = "zmk,behavior-tap-dance";
                 #binding-cells = <0>;
-                tapping-term-ms = <100>;
+                tapping-term-ms = <200>;
                 bindings = <&hm LCTRL BSPC>, <&kp BSPC>;
         };
         kanji: kanji_morph {
