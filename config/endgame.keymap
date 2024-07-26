@@ -67,7 +67,7 @@
         layers = <MSC>;
 
         evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_MISC>;
+        x-input-code = <INPUT_REL_HWHEEL>;
         y-input-code = <INPUT_REL_WHEEL>;
 
         /* align to CCW 45 degree */
@@ -75,8 +75,9 @@
         /* NOTE 1: This settings do not compitable with y-invert and x-invert */
         /* NOTE 2: Floating point computation requires alot of ram. */
         /*         This feature will cuase stackove flow with CONFIG_ZMK_USB_LOGGING=y */
+		y-invert;
 
-        bindings = <&ib_wheel_scaler 1 18>;
+		bindings = <&ib_wheel_scaler 1 30>;
     };
 
     /* define a resolution down scaler only for INPUT_REL_WHEEL */
