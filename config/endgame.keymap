@@ -67,7 +67,7 @@
         layers = <MSC>;
 
         evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_HWHEEL>;
+        x-input-code = <INPUT_REL_MISC>;
         y-input-code = <INPUT_REL_WHEEL>;
 
         /* align to CCW 45 degree */
