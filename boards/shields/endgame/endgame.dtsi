@@ -72,7 +72,6 @@ RC(4,0) RC(4,1) RC(4,2)
 
     five_column_transform: keymap_transform_1 {
         compatible = "zmk,matrix-transform";
-		wakeup-source;
         columns = <10>;
         rows = <4>;
 // | SW2  | SW3  | SW4  | SW5  | SW6  |   | SW6  | SW5  | SW4  | SW3  | SW2  |
