@@ -66,8 +66,6 @@
         device = <&trackball>;
         layers = <MSC>;
         evt-type = <INPUT_EV_REL>;
-        scale-multiplier = <2>;
-        scale-divisor = <7>;
 
         /* slienting x-axis with alt event code */
         x-input-code = <INPUT_REL_HWHEEL>;
