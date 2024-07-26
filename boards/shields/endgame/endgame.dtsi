@@ -36,6 +36,7 @@
     trackball: trackball@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
+		wakeup-source;
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
@@ -54,6 +55,7 @@
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
+		wakeup-source;
         columns = <12>;
         rows = <5>;
 // | SW1  | SW2  | SW3  | SW4  | SW5  | SW6  |   | SW6  | SW5  | SW4  | SW3  | SW2  | SW1  |
@@ -71,6 +73,7 @@ RC(4,0) RC(4,1) RC(4,2)
 
     five_column_transform: keymap_transform_1 {
         compatible = "zmk,matrix-transform";
+		wakeup-source;
         columns = <10>;
         rows = <4>;
 // | SW2  | SW3  | SW4  | SW5  | SW6  |   | SW6  | SW5  | SW4  | SW3  | SW2  |
@@ -117,6 +120,7 @@ RC(4,0) RC(4,1) RC(4,2)
 
     encoder: encoder {
 		compatible = "alps,ec11";
+		wakeup-source;
 		a-gpios = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 		b-gpios = <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 		steps = <80>;
