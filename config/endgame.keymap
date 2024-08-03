@@ -161,7 +161,7 @@
             // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
             // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
             //                    | ALT | LWR | SPC |   | ENT | RSE  | ALT |
-			display-name = "Alpha";	
+			display-name = "Base";	
             bindings = <
                 &kp TAB   &kp Q &kp W  &kp E        &kp R         &kp T                     &kp Y          &kp U          &kp I     &kp O   &kp P    &kp BSPC
                 &kp LCTRL &kp A &kp S  &kp D        &kp F         &kp G                     &kp H          &kp J          &kp K     &kp L   &kp SEMI &kp SQT
@@ -178,7 +178,7 @@
             // | CTRL |PSCRN| HOM | PUP | PUD | END |   | LFT | DWN |  UP | RGT |  `  |      |
             // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
             //                    | GUI |     | SPC |   | ENT |     | GUI |
-			display-name = "Numbers";
+			display-name = "Num";
             bindings = <
                 &trans  &kp N1    &kp N2   &kp N3    &kp N4    &kp N5      &kp N6   &kp N7   &kp N8 &kp N9    &kp N0    &trans
                 &trans  &kp PSCRN &kp HOME &kp PG_UP &kp PG_DN &kp END     &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp RCTRL &trans
@@ -195,7 +195,7 @@
             // | CTRL | PRV | MUT | PLY | NXT | VOU |   |  -  |  =  |  [  |  ]  |  \  |  `   |
             // | SHFT |     |     |     |     | VOD |   |  _  |  +  |  {  |  }  | "|" |  ~   |
             //                    | GUI |     | SPC |   | ENT |     | GUI |
-			display-name = "Symbols";
+			display-name = "Sym";
             bindings = <
                 &trans &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT       &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
                 &trans &kp DQT   &kp LBKT  &kp LBRC  &kp LPAR  &kp SQT         &kp SQT   &kp RPAR  &kp RBRC        &kp RBKT &kp DQT  &trans
@@ -212,7 +212,7 @@
             // |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     | RON | HUI | SAI | BRI |     |
             // |      | USB | BLE |     |     | CLR |   |     | ROF | HUD | SAD | BRD |     |
             //                    |     |     |     |   |     |     |    |
-			display-name = "Functions";
+			display-name = "Func";
             bindings = <
                 &trans   &kp F2       &kp F3       &kp F4       &kp F5       &kp F6              &kp F7       &kp F8       &kp F9       &kp F10      &kp F11    &trans
                 &trans   &kp F1       &kp C_PREV   &kp C_MUTE   &kp C_PP     &kp C_NEXT          &kp C_BRI_DN &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_UP &kp F12    &trans
@@ -229,7 +229,7 @@
             // |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     | RON | HUI | SAI | BRI |     |
             // |      | USB | BLE |     |     | CLR |   |     | ROF | HUD | SAD | BRD |     |
             //                    |     |     |     |   |     |     |    |
-			display-name = "Game/Alpha";
+			display-name = "G/Base";
             bindings = <  
                 &trans &kp Q &kp W &kp E   &kp R   &kp T        &none     &kp I     &kp UP   &none     &none &trans
                 &trans &kp A &kp S &kp D   &kp F   &kp G        &none     &kp LEFT  &kp DOWN &kp RIGHT &none &trans
@@ -246,11 +246,11 @@
             // |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     | RON | HUI | SAI | BRI |     |
             // |      | USB | BLE |     |     | CLR |   |     | ROF | HUD | SAD | BRD |     |
             //                    |     |     |     |   |     |     |    |
-			display-name = "Game/Alpha";
+			display-name = "G/Func";
             bindings = <
                 &trans &kp N1 &kp N2 &kp N3 &kp N4 &kp N5   &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &trans
                 &trans &kp F2 &kp F3 &kp F4 &kp F5 &kp F6   &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &trans
-                &trans &kp F1 &trans &trans &trans &trans   &to 1  &none  &to 4  &trans &kp F12 &trans
+                &trans &kp F1 &trans &trans &trans &trans   &to 0  &none  &to 4  &trans &kp F12 &trans
                                      &trans &trans &trans   &trans &trans &trans
                 &trans &trans &trans
             >;
