@@ -268,7 +268,7 @@
 				&tog MSC &tog MSC &tog MSC &tog MSC &tog MSC &tog MSC 	&tog MSC &tog MSC &tog MSC &tog MSC &tog MSC &tog MSC 
 				&tog MSC &tog MSC &tog MSC &tog MSC &tog MSC &tog MSC 	&tog MSC &tog MSC &tog MSC &tog MSC &tog MSC &tog MSC 
 				&tog MSC &tog MSC &tog MSC &tog MSC &tog MSC &tog MSC 	&tog MSC &tog MSC &tog MSC &tog MSC &tog MSC &tog MSC 
-										   &tog MSC &tog MSC &tog MSC   &tog MSC &tog MSC &tog MSC 
+                                                           &trans   &trans   &trans     &trans   &trans   &trans
 				&bt BT_CLR &tog MSC &mkp MCLK
             >;
             sensor-bindings	= <&rot_bt>;
