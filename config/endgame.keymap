@@ -141,6 +141,12 @@
             bindings = <&kp DEL>;
             layers = <0>;
         };
+        combo_shift {
+            timeout-ms = <50>;
+            key-positions = <16 19>;
+            bindings = <&sk LSHFT>;
+            layers = <0>;
+        };
 		// left combo
 		combo_s1 { timeout-ms = <50>; key-positions = <38 6>; bindings = <&kp CARET>; layers = <0>; };
 		combo_s2 { timeout-ms = <50>; key-positions = <38 7>; bindings = <&kp AMPS>; layers = <0>; };
@@ -196,7 +202,7 @@
                 &kp TAB   &kp Q &kp W  &kp E        &kp R         &kp T                     &kp Y          &kp U          &kp I     &kp O   &kp P    &kp BSPC
                 &kp LCTRL &hm LGUI A &hm LALT S  &hm LCTRL D &hm LSHFT F &kp G              &kp H          &hm RSHFT J    &hm LCTRL K     &hm LALT L &hm RGUI SEMI &kp SQT
                 &kp LSHFT &kp Z &kanji &kp C        &kp V         &kp B                     &kp N          &kp M          &kp COMMA &kp DOT &kp FSLH &kp ESC
-                                       &hm LALT ESC &hm_l NUM TAB &hm LSHFT SPACE             &hm RSHFT RET &hm_l SYM BSPC &kp RALT
+                                       &hm LALT ESC &hm LCTRL TAB &hm_l NUM SPACE             &hm_l FUN RET &hm RALT BSPC &kp RALT
                 &mkp RCLK &mkp LCLK &tog MSC
             >;
             sensor-bindings = <&inc_dec_kp PGDN PGUP>;
