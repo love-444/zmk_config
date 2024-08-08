@@ -99,6 +99,15 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+        hm_l: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <100>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
+        };
         td_mt: tap_dance_mod_tap {
                 compatible = "zmk,behavior-tap-dance";
                 #binding-cells = <0>;
@@ -132,6 +141,45 @@
             bindings = <&kp DEL>;
             layers = <0>;
         };
+		// left combo
+		combo_s1 { timeout-ms = <50>; key-positions = <38 6>; bindings = <&kp CARET>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 7>; bindings = <&kp AMPS>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 8>; bindings = <&kp KP_MULTIPLY>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 9>; bindings = <&kp LPAR>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 10>; bindings = <&kp RPAR>; layers = <0>; }
+
+		combo_s1 { timeout-ms = <50>; key-positions = <38 18>; bindings = <&kp SQT>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 19>; bindings = <&kp RPAR>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 20>; bindings = <&kp RBRC>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 21>; bindings = <&kp RBKT>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 22>; bindings = <&kp DQT>; layers = <0>; }
+
+		combo_s1 { timeout-ms = <50>; key-positions = <38 30>; bindings = <&kp RT>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 31>; bindings = <&kp EQUAL>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 32>; bindings = <&kp PLUS>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 33>; bindings = <&kp BSLH>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <38 34>; bindings = <&kp PIPE>; layers = <0>; }
+
+
+		//right combo
+		combo_s1 { timeout-ms = <50>; key-positions = <39 1>; bindings = <&kp EXCL>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 2>; bindings = <&kp AT>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 3>; bindings = <&kp HASH>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 4>; bindings = <&kp DLLR>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 5>; bindings = <&kp PRCNT>; layers = <0>; }
+
+		combo_s1 { timeout-ms = <50>; key-positions = <39 13>; bindings = <&kp DQT>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 14>; bindings = <&kp LBKT>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 15>; bindings = <&kp LBRC>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 16>; bindings = <&kp LPAR>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 17>; bindings = <&kp SQT>; layers = <0>; }
+
+		combo_s1 { timeout-ms = <50>; key-positions = <39 25>; bindings = <&kp TILDE>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 26>; bindings = <&kp GRAVE>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 27>; bindings = <&kp UNDER>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 28>; bindings = <&kp MINUS>; layers = <0>; }
+		combo_s1 { timeout-ms = <50>; key-positions = <39 29>; bindings = <&kp LT>; layers = <0>; }
+
     };
 
     keymap {
@@ -148,7 +196,7 @@
                 &kp TAB   &kp Q &kp W  &kp E        &kp R         &kp T                     &kp Y          &kp U          &kp I     &kp O   &kp P    &kp BSPC
                 &kp LCTRL &hm LGUI A &hm LALT S  &hm LCTRL D &hm LSHFT F &kp G              &kp H          &hm RSHFT J    &hm LCTRL K     &hm LALT L &hm RGUI SEMI &kp SQT
                 &kp LSHFT &kp Z &kanji &kp C        &kp V         &kp B                     &kp N          &kp M          &kp COMMA &kp DOT &kp FSLH &kp ESC
-                                       &hm LALT ESC &lt FUN TAB &lt NUM SPACE          &lt SYM RET &hm RALT BSPC &kp RALT
+                                       &hm LALT ESC &hm_l NUM TAB &hm LSHFT SPACE             &hm RSHFT RET &hm_l SYM BSPC &kp RALT
                 &mkp RCLK &mkp LCLK &tog MSC
             >;
             sensor-bindings = <&inc_dec_kp PGDN PGUP>;
